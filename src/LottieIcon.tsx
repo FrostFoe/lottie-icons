@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import lottie, { AnimationItem } from "lottie-web";
+import type { AnimationItem } from "lottie-web";
 import { LottieIconProps } from "./types";
 
 export const LottieIcon: React.FC<LottieIconProps> = ({
@@ -23,38 +23,66 @@ export const LottieIcon: React.FC<LottieIconProps> = ({
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return; // SSR guard
     if (!containerRef.current || !animationData) return;
 
-    // Clear previous animation
+    // Clear previous animation (if any)
     if (animationRef.current) {
-      animationRef.current.destroy();
+      try {
+        animationRef.current.destroy();
+      } catch (e) {
+        // ignore
+      }
+      animationRef.current = null;
     }
 
-    // Create new animation
-    const anim = lottie.loadAnimation({
-      container: containerRef.current,
-      renderer,
-      loop: hoverToPlay ? false : loop,
-      autoplay: hoverToPlay ? false : autoplay,
-      animationData,
-    });
+    let mounted = true;
+    let anim: AnimationItem | null = null;
 
-    animationRef.current = anim;
+    // Lazy-load lottie-web at runtime to avoid bundling it into SSR or consumers' main bundles
+    (async () => {
+      try {
+        const lottieModule = await import("lottie-web");
+        if (!mounted || !containerRef.current) return;
+        const player = (lottieModule && (lottieModule.default || lottieModule)) as any;
 
-    // Set speed
-    anim.setSpeed(speed);
+        anim = player.loadAnimation({
+          container: containerRef.current,
+          renderer,
+          loop: hoverToPlay ? false : loop,
+          autoplay: hoverToPlay ? false : autoplay,
+          animationData,
+        });
 
-    // Event listeners
-    if (onComplete) {
-      anim.addEventListener("complete", onComplete);
-    }
+        animationRef.current = anim;
 
-    if (onLoad) {
-      anim.addEventListener("DOMLoaded", onLoad);
-    }
+        // Set speed and attach events if animation exists
+        if (anim) {
+          anim.setSpeed(speed);
+          if (onComplete) {
+            anim.addEventListener("complete", onComplete);
+          }
+          if (onLoad) {
+            anim.addEventListener("DOMLoaded", onLoad);
+          }
+        }
+      } catch (err) {
+        // If dynamic import fails, fail gracefully in the console
+        // (this should be rare unless consumer blocks dynamic imports)
+        // eslint-disable-next-line no-console
+        console.error("Failed to load lottie-web:", err);
+      }
+    })();
 
     return () => {
-      anim.destroy();
+      mounted = false;
+      if (anim) {
+        try {
+          anim.destroy();
+        } catch (e) {
+          // ignore
+        }
+      }
     };
   }, [
     animationData,
