@@ -44,7 +44,8 @@ export const LottieIcon: React.FC<LottieIconProps> = ({
       try {
         const lottieModule = await import("lottie-web");
         if (!mounted || !containerRef.current) return;
-        const player = (lottieModule && (lottieModule.default || lottieModule)) as any;
+        const player = (lottieModule &&
+          (lottieModule.default || lottieModule)) as any;
 
         anim = player.loadAnimation({
           container: containerRef.current,

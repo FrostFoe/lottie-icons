@@ -8,8 +8,23 @@
   "exports": {
     ".": {
       "import": "./dist/lottie-icons.es.js",
-      "require": "./dist/lottie-icons.umd.js",
       "types": "./dist/index.d.ts"
+    },
+    "./icons/Heart": {
+      "import": "./dist/icons/Heart.js",
+      "types": "./dist/icons/Heart.d.ts"
+    },
+    "./icons/Check": {
+      "import": "./dist/icons/Check.js",
+      "types": "./dist/icons/Check.d.ts"
+    },
+    "./icons/Loader": {
+      "import": "./dist/icons/Loader.js",
+      "types": "./dist/icons/Loader.d.ts"
+    },
+    "./icons/ArrowRight": {
+      "import": "./dist/icons/ArrowRight.js",
+      "types": "./dist/icons/ArrowRight.d.ts"
     }
   },
   "sideEffects": false,
@@ -41,6 +56,7 @@
     "lottie-web": "^5.12.2"
   },
   "devDependencies": {
+    "@types/node": "^24.9.1",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",
