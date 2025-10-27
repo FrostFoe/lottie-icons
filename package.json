@@ -1,0 +1,52 @@
+{
+  "name": "lottie-icons",
+  "version": "1.0.0",
+  "description": "A Lucide-style React icon library with Lottie animations - lightweight, scalable, and fully interactive",
+  "main": "./dist/lottie-icons.umd.js",
+  "module": "./dist/lottie-icons.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/lottie-icons.es.js",
+      "require": "./dist/lottie-icons.umd.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "react",
+    "icons",
+    "lottie",
+    "animation",
+    "lucide",
+    "svg",
+    "components"
+  ],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "dependencies": {
+    "lottie-web": "^5.12.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0",
+    "vite-plugin-dts": "^3.7.3"
+  }
+}
