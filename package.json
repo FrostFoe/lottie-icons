@@ -1,0 +1,48 @@
+{
+  "name": "lottie-lucide",
+  "version": "0.1.0",
+  "description": "Lucide-style animated icon system for React using Lottie animations.",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "react",
+    "icons",
+    "lottie",
+    "animation",
+    "lucide"
+  ],
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/example/lottie-lucide.git"
+  },
+  "bugs": {
+    "url": "https://github.com/example/lottie-lucide/issues"
+  },
+  "homepage": "https://github.com/example/lottie-lucide#readme",
+  "peerDependencies": {
+    "react": ">=16.8",
+    "react-dom": ">=16.8"
+  },
+  "dependencies": {
+    "lottie-react": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.74",
+    "@types/react-dom": "^18.2.24",
+    "tsup": "^8.0.1",
+    "typescript": "^5.4.5"
+  }
+}
