@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { createRoot } from "react-dom/client";
-import { Heart, Check, Loader, ArrowRight } from "../index";
+import {
+  Add,
+  Announcement,
+  Coupon,
+  Customer,
+  FilterItem,
+} from "../../src/icons";
 import "./styles.css";
 
 function Demo() {
@@ -8,9 +14,26 @@ function Demo() {
   const [strokeWidth, setStrokeWidth] = useState(2);
   const [size, setSize] = useState(24);
   const [absoluteStrokeWidth, setAbsoluteStrokeWidth] = useState(false);
+  const [isDark, setIsDark] = useState(true);
+
+  const toggleTheme = () => {
+    setIsDark(!isDark);
+    document.documentElement.classList.toggle("dark", !isDark);
+  };
+
+  const themeColors = {
+    light: {
+      "#000000": "#4A4A4A", // Black to dark gray
+    },
+    dark: {
+      "#000000": "#FFFFFF", // Black to white
+    },
+  };
+
+  const colors = isDark ? themeColors.dark : themeColors.light;
 
   return (
-    <div className="lucide-clone">
+    <div className={`lucide-clone ${isDark ? "dark" : ""}`}>
       {/* Header */}
       <header className="header">
         <div className="header-content">
@@ -40,7 +63,11 @@ function Demo() {
             <a href="#license">License</a>
           </nav>
           <div className="header-actions">
-            <button className="theme-toggle" aria-label="Toggle theme">
+            <button
+              className="theme-toggle"
+              aria-label="Toggle theme"
+              onClick={toggleTheme}
+            >
               <svg
                 width="16"
                 height="16"
@@ -113,65 +140,65 @@ function Demo() {
         <div className="hero-icons">
           <div className="icon-row">
             {[
-              Heart,
-              Check,
-              Loader,
-              ArrowRight,
-              Heart,
-              Check,
-              Loader,
-              ArrowRight,
+              Add,
+              Announcement,
+              Customer,
+              Coupon,
+              FilterItem,
+              Add,
+              Announcement,
+              Customer,
             ].map((Icon, i) => (
               <div key={i} className="hero-icon">
-                <Icon size={20} autoplay loop />
+                <Icon size={20} autoplay loop colors={colors} />
               </div>
             ))}
           </div>
           <div className="icon-row">
             {[
-              ArrowRight,
-              Heart,
-              Check,
-              Loader,
-              ArrowRight,
-              Heart,
-              Check,
-              Loader,
+              Coupon,
+              FilterItem,
+              Add,
+              Announcement,
+              Customer,
+              Coupon,
+              FilterItem,
+              Add,
             ].map((Icon, i) => (
               <div key={i} className="hero-icon">
-                <Icon size={20} autoplay loop />
+                <Icon size={20} autoplay loop colors={colors} />
               </div>
             ))}
           </div>
           <div className="icon-row">
             {[
-              Check,
-              Loader,
-              Heart,
-              ArrowRight,
-              Check,
-              Loader,
-              Heart,
-              ArrowRight,
+              FilterItem,
+              Add,
+              Announcement,
+              Customer,
+              Coupon,
+              FilterItem,
+              Add,
+              Announcement,
             ].map((Icon, i) => (
               <div key={i} className="hero-icon">
-                <Icon size={20} autoplay loop />
+                <Icon size={20} autoplay loop colors={colors} />
               </div>
             ))}
           </div>
           <div className="icon-row">
             {[
-              Loader,
-              ArrowRight,
-              Heart,
-              Check,
-              Loader,
-              ArrowRight,
-              Heart,
-              Check,
+              Add,
+              Announcement,
+              Customer,
+              Coupon,
+              FilterItem,
+              Add,
+              Announcement,
+              Customer,
             ].map((Icon, i) => (
               <div key={i} className="hero-icon">
-                <Icon size={20} autoplay loop />
+                <Icon size={20} autoplay loop colors={colors} />
               </div>
             ))}
           </div>
@@ -193,7 +220,7 @@ function Demo() {
               </svg>
               <input
                 type="text"
-                placeholder="Search 4 icons..."
+                placeholder="Search 6 icons..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -397,7 +424,7 @@ function Demo() {
             <div className="control-group">
               <label>
                 <span style={{ fontFamily: "monospace", fontSize: "0.85rem" }}>
-                  import &#123; Heart &#125; from 'lottie-icons'
+                  import &#123; Add &#125; from 'lottie-icons'
                 </span>
               </label>
               <span
@@ -411,7 +438,7 @@ function Demo() {
             <div className="control-group">
               <label>
                 <span style={{ fontFamily: "monospace", fontSize: "0.85rem" }}>
-                  import Heart from 'lottie-icons/icons/Heart'
+                  import Add from 'lottie-icons/icons/Add'
                 </span>
               </label>
               <span
@@ -425,7 +452,7 @@ function Demo() {
             <div className="control-group">
               <label>
                 <span style={{ fontFamily: "monospace", fontSize: "0.85rem" }}>
-                  &lt;Heart size=&#123;48&#125; loop autoplay /&gt;
+                  &lt;Add size=&#123;48&#125; loop autoplay /&gt;
                 </span>
               </label>
             </div>
@@ -435,11 +462,17 @@ function Demo() {
         {/* Icon Preview Grid */}
         <div className="preview-grid">
           {Array.from({ length: 48 }, (_, i) => {
-            const icons = [Heart, Check, Loader, ArrowRight];
+            const icons = [
+              Add,
+              Announcement,
+              Coupon,
+              Customer,
+              FilterItem,
+            ];
             const Icon = icons[i % icons.length];
             return (
               <div key={i} className="preview-icon">
-                <Icon size={size} autoplay loop />
+                <Icon size={size} autoplay loop colors={colors} />
               </div>
             );
           })}
@@ -528,11 +561,17 @@ function Demo() {
         {/* Icon Preview Grid */}
         <div className="preview-grid">
           {Array.from({ length: 48 }, (_, i) => {
-            const icons = [Heart, Check, Loader, ArrowRight];
+            const icons = [
+              Add,
+              Announcement,
+              Coupon,
+              Customer,
+              FilterItem,
+            ];
             const Icon = icons[i % icons.length];
             return (
               <div key={i} className="preview-icon">
-                <Icon size={size} autoplay loop />
+                <Icon size={size} autoplay loop colors={colors} />
               </div>
             );
           })}

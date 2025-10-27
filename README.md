@@ -83,10 +83,25 @@ Create your own icon components from Lottie JSON:
 import { createLottieIcon } from "lottie-icons";
 import starAnimation from "./star-animation.json";
 
-export const Star = createLottieIcon("Star", starAnimation);
+export const Star = createLottieIcon(starAnimation, "Star");
 
 // Use it anywhere
 <Star size={32} speed={1.5} loop />;
+```
+
+### Ref Support
+
+Icons support refs for direct DOM access:
+
+```tsx
+import { useRef } from "react";
+import { Heart } from "lottie-icons";
+
+function MyComponent() {
+  const iconRef = useRef<HTMLDivElement>(null);
+
+  return <Heart ref={iconRef} size={48} />;
+}
 ```
 
 ### Interactive Icons
@@ -168,7 +183,7 @@ import myAnimation from "./animations/my-icon.json";
 
 ```tsx
 import { createLottieIcon } from "lottie-icons";
-export const MyIcon = createLottieIcon("MyIcon", myAnimation);
+export const MyIcon = createLottieIcon(myAnimation, "MyIcon");
 ```
 
 4. **Use It**:
@@ -179,20 +194,38 @@ export const MyIcon = createLottieIcon("MyIcon", myAnimation);
 
 ## 🔧 Advanced Usage
 
-### Icon Registry
+### Per-Icon Imports (Tree-Shaking)
 
-Register multiple icons globally:
+For optimal bundle size, import icons individually:
 
 ```tsx
-import { iconRegistry } from "lottie-icons";
-import icon1 from "./icon1.json";
-import icon2 from "./icon2.json";
+// Default import (all icons)
+import { Heart, Check } from "lottie-icons"; // ~0.32 kB
 
-iconRegistry.register("Icon1", icon1);
-iconRegistry.register("Icon2", icon2);
+// Per-icon import (smaller bundle)
+import Heart from "lottie-icons/icons/Heart"; // ~0.14 kB (87% smaller!)
+import Check from "lottie-icons/icons/Check";
+```
 
-// Create component from registry
-const Icon1 = iconRegistry.createComponent("Icon1");
+### Next.js / SSR Usage
+
+Icons are SSR-safe by default:
+
+```tsx
+// Next.js App Router
+"use client";
+import { Heart } from "lottie-icons";
+
+export default function Page() {
+  return <Heart size={48} loop />;
+}
+
+// Or use dynamic import for Pages Router
+import dynamic from "next/dynamic";
+
+const Heart = dynamic(() => import("lottie-icons").then((mod) => mod.Heart), {
+  ssr: false,
+});
 ```
 
 ### Different Renderers

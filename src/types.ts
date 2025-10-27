@@ -1,4 +1,8 @@
-import type { FC, HTMLAttributes } from "react";
+import type {
+  ForwardRefExoticComponent,
+  RefAttributes,
+  HTMLAttributes,
+} from "react";
 
 export interface LottieIconProps extends HTMLAttributes<HTMLDivElement> {
   /** Size of the icon in pixels */
@@ -11,6 +15,8 @@ export interface LottieIconProps extends HTMLAttributes<HTMLDivElement> {
   autoplay?: boolean;
   /** Color override (if the Lottie file supports it) */
   color?: string;
+  /** A map of original hex colors to new hex colors for theming */
+  colors?: Record<string, string>;
   /** Stroke width override (if applicable) */
   strokeWidth?: number;
   /** Additional CSS class names */
@@ -27,7 +33,6 @@ export interface LottieIconProps extends HTMLAttributes<HTMLDivElement> {
   renderer?: "svg" | "canvas" | "html";
 }
 
-export interface IconComponent
-  extends FC<Omit<LottieIconProps, "animationData">> {
-  displayName?: string;
-}
+export type IconComponent = ForwardRefExoticComponent<
+  Omit<LottieIconProps, "animationData"> & RefAttributes<HTMLDivElement>
+>;

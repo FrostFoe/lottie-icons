@@ -1,69 +1,86 @@
 {
   "name": "lottie-icons",
   "version": "1.0.0",
-  "description": "A Lucide-style React icon library with Lottie animations - lightweight, scalable, and fully interactive",
-  "main": "./dist/lottie-icons.umd.js",
+  "description": "Beautiful animated React icons powered by Lottie - Lucide-style API with SSR support",
+  "main": "./dist/lottie-icons.es.js",
   "module": "./dist/lottie-icons.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/lottie-icons.es.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/lottie-icons.es.js"
     },
     "./icons/Heart": {
-      "import": "./dist/icons/Heart.js",
-      "types": "./dist/icons/Heart.d.ts"
+      "types": "./dist/icons/Heart.d.ts",
+      "import": "./dist/icons/Heart.js"
     },
     "./icons/Check": {
-      "import": "./dist/icons/Check.js",
-      "types": "./dist/icons/Check.d.ts"
+      "types": "./dist/icons/Check.d.ts",
+      "import": "./dist/icons/Check.js"
     },
     "./icons/Loader": {
-      "import": "./dist/icons/Loader.js",
-      "types": "./dist/icons/Loader.d.ts"
+      "types": "./dist/icons/Loader.d.ts",
+      "import": "./dist/icons/Loader.js"
     },
     "./icons/ArrowRight": {
-      "import": "./dist/icons/ArrowRight.js",
-      "types": "./dist/icons/ArrowRight.d.ts"
-    }
+      "types": "./dist/icons/ArrowRight.d.ts",
+      "import": "./dist/icons/ArrowRight.js"
+    },
+    "./package.json": "./package.json"
   },
   "sideEffects": false,
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "USAGE_EXAMPLES.md"
   ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepublishOnly": "pnpm build"
   },
   "keywords": [
     "react",
     "icons",
     "lottie",
     "animation",
+    "animated-icons",
     "lucide",
     "svg",
-    "components"
+    "components",
+    "react-icons",
+    "lottie-web",
+    "nextjs",
+    "ssr",
+    "typescript"
   ],
   "author": "",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/lottie-icons.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/lottie-icons/issues"
+  },
+  "homepage": "https://github.com/yourusername/lottie-icons#readme",
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
   "dependencies": {
-    "lottie-web": "^5.12.2"
+    "lottie-web": "^5.13.0"
   },
   "devDependencies": {
     "@types/node": "^24.9.1",
-    "@types/react": "^18.2.66",
-    "@types/react-dom": "^18.2.22",
-    "@vitejs/plugin-react": "^4.2.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "typescript": "^5.2.2",
-    "vite": "^5.2.0",
-    "vite-plugin-dts": "^3.7.3"
+    "@types/react": "^18.3.26",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.9.3",
+    "vite": "^5.4.21",
+    "vite-plugin-dts": "^3.9.1"
   }
 }
