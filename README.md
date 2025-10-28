@@ -29,14 +29,14 @@ pnpm add lottie-icons
 ## 🚀 Quick Start
 
 ```tsx
-import { Heart, Check, Loader } from "lottie-icons";
+import { Add, Customer, Location } from "lottie-icons";
 
 function App() {
   return (
     <div>
-      <Heart size={32} />
-      <Check size={48} speed={2} loop />
-      <Loader size={64} loop autoplay />
+      <Add size={32} />
+      <Customer size={48} speed={2} loop />
+      <Location size={64} loop autoplay />
     </div>
   );
 }
@@ -49,14 +49,14 @@ function App() {
 Import and use icons just like Lucide React:
 
 ```tsx
-import { Heart, Check, ArrowRight } from "lottie-icons";
+import { Add, Customer, FastDelivery } from "lottie-icons";
 
 function MyComponent() {
   return (
     <div>
-      <Heart size={24} />
-      <Check size={32} speed={1.5} />
-      <ArrowRight size={40} loop />
+      <Add size={24} />
+      <Customer size={32} speed={1.5} />
+      <FastDelivery size={40} loop />
     </div>
   );
 }
@@ -95,12 +95,12 @@ Icons support refs for direct DOM access:
 
 ```tsx
 import { useRef } from "react";
-import { Heart } from "lottie-icons";
+import { Add } from "lottie-icons";
 
 function MyComponent() {
   const iconRef = useRef<HTMLDivElement>(null);
 
-  return <Heart ref={iconRef} size={48} />;
+  return <Add ref={iconRef} size={48} />;
 }
 ```
 
@@ -109,11 +109,11 @@ function MyComponent() {
 Add hover effects and callbacks:
 
 ```tsx
-import { Heart } from "lottie-icons";
+import { Dislike } from "lottie-icons";
 
 function LikeButton() {
   return (
-    <Heart
+    <Dislike
       size={48}
       hoverToPlay
       onComplete={() => console.log("Animation complete!")}
@@ -121,6 +121,53 @@ function LikeButton() {
     />
   );
 }
+```
+
+### Dark/Light Theme Support
+
+Icons support dynamic color theming for dark and light modes:
+
+```tsx
+import { useState } from "react";
+import { Add, Customer, Location } from "lottie-icons";
+
+function ThemedIcons() {
+  const [isDark, setIsDark] = useState(true);
+
+  // Define color mappings for each theme
+  const themeColors = {
+    light: {
+      "0,0,0,1": [0.29, 0.29, 0.29, 1], // Black to dark gray
+    },
+    dark: {
+      "0,0,0,1": [1, 1, 1, 1], // Black to white
+    },
+  };
+
+  const colors = isDark ? themeColors.dark : themeColors.light;
+
+  return (
+    <div>
+      <button onClick={() => setIsDark(!isDark)}>Toggle Theme</button>
+      <Add size={32} colors={colors} loop autoplay />
+      <Customer size={32} colors={colors} loop autoplay />
+      <Location size={32} colors={colors} loop autoplay />
+    </div>
+  );
+}
+```
+
+You can also use hex color format:
+
+```tsx
+const hexThemeColors = {
+  light: {
+    "#000000": "#4A4A4A", // Black to dark gray
+  },
+  dark: {
+    "#000000": "#FFFFFF", // Black to white
+  },
+};
 ```
 
 ## 🎛️ API Reference
@@ -136,6 +183,7 @@ All icon components accept the following props:
 | `loop`        | `boolean`                     | `false` | Whether to loop the animation           |
 | `autoplay`    | `boolean`                     | `true`  | Whether to autoplay on mount            |
 | `hoverToPlay` | `boolean`                     | `false` | Play animation on hover                 |
+| `colors`      | `Record<string, string \| number[]>` | -    | Color mappings for theming (supports hex or RGB) |
 | `renderer`    | `'svg' \| 'canvas' \| 'html'` | `'svg'` | Lottie renderer type                    |
 | `className`   | `string`                      | `''`    | Additional CSS classes                  |
 | `onComplete`  | `() => void`                  | -       | Callback when animation completes       |
@@ -162,12 +210,19 @@ const MyIcon = createLottieIcon("MyIcon", animationData);
 
 ### Built-in Icons
 
-The library includes these sample icons:
+The library includes these animated icons:
 
-- `Heart` - Animated heart icon
-- `Check` - Checkmark with animation
-- `Loader` - Spinning loader
-- `ArrowRight` - Animated arrow
+- `Add` - Add/Plus icon with animation
+- `Announcement` - Announcement/megaphone icon
+- `Customer` - Customer/user profile icon
+- `Coupon` - Coupon/discount icon
+- `FilterItem` - Filter/funnel icon
+- `Dislike` - Thumbs down icon
+- `FastDelivery` - Fast delivery/shipping icon
+- `Location` - Location/map pin icon
+- `Nevigation` - Navigation/compass icon
+- `RemoveItem` - Remove/delete icon
+- `User` - User/person icon
 
 ## 🎨 Creating Your Own Icons
 
@@ -200,11 +255,11 @@ For optimal bundle size, import icons individually:
 
 ```tsx
 // Default import (all icons)
-import { Heart, Check } from "lottie-icons"; // ~0.32 kB
+import { Add, Customer } from "lottie-icons"; // ~0.32 kB
 
 // Per-icon import (smaller bundle)
-import Heart from "lottie-icons/icons/Heart"; // ~0.14 kB (87% smaller!)
-import Check from "lottie-icons/icons/Check";
+import Add from "lottie-icons/icons/Add"; // ~0.14 kB (87% smaller!)
+import Customer from "lottie-icons/icons/Customer";
 ```
 
 ### Next.js / SSR Usage
@@ -214,16 +269,16 @@ Icons are SSR-safe by default:
 ```tsx
 // Next.js App Router
 "use client";
-import { Heart } from "lottie-icons";
+import { Add } from "lottie-icons";
 
 export default function Page() {
-  return <Heart size={48} loop />;
+  return <Add size={48} loop />;
 }
 
 // Or use dynamic import for Pages Router
 import dynamic from "next/dynamic";
 
-const Heart = dynamic(() => import("lottie-icons").then((mod) => mod.Heart), {
+const Add = dynamic(() => import("lottie-icons").then((mod) => mod.Add), {
   ssr: false,
 });
 ```
@@ -233,9 +288,9 @@ const Heart = dynamic(() => import("lottie-icons").then((mod) => mod.Heart), {
 Choose between SVG, Canvas, or HTML rendering:
 
 ```tsx
-<Heart renderer="svg" />    {/* Default - best for most cases */}
-<Heart renderer="canvas" /> {/* Better for complex animations */}
-<Heart renderer="html" />   {/* Rare use cases */}
+<Add renderer="svg" />    {/* Default - best for most cases */}
+<Add renderer="canvas" /> {/* Better for complex animations */}
+<Add renderer="html" />   {/* Rare use cases */}
 ```
 
 ## 📚 Examples
@@ -244,14 +299,14 @@ Choose between SVG, Canvas, or HTML rendering:
 
 ```tsx
 import { useState } from "react";
-import { Heart } from "lottie-icons";
+import { Dislike } from "lottie-icons";
 
 function LikeButton() {
   const [liked, setLiked] = useState(false);
 
   return (
     <button onClick={() => setLiked(!liked)}>
-      <Heart size={32} autoplay={liked} loop={false} />
+      <Dislike size={32} autoplay={liked} loop={false} />
     </button>
   );
 }
@@ -260,14 +315,14 @@ function LikeButton() {
 ### Loading Indicator
 
 ```tsx
-import { Loader } from "lottie-icons";
+import { Location } from "lottie-icons";
 
 function LoadingScreen({ isLoading }) {
   if (!isLoading) return null;
 
   return (
     <div className="loading-overlay">
-      <Loader size={64} loop autoplay speed={1.5} />
+      <Location size={64} loop autoplay speed={1.5} />
       <p>Loading...</p>
     </div>
   );
@@ -277,12 +332,12 @@ function LoadingScreen({ isLoading }) {
 ### Success Animation
 
 ```tsx
-import { Check } from "lottie-icons";
+import { Add } from "lottie-icons";
 
 function SuccessMessage({ onComplete }) {
   return (
     <div className="success">
-      <Check size={80} speed={1.2} onComplete={onComplete} />
+      <Add size={80} speed={1.2} onComplete={onComplete} />
       <p>Success!</p>
     </div>
   );

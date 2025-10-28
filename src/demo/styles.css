@@ -13,11 +13,24 @@ body {
   color: #e0e0e0;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .lucide-clone {
   min-height: 100vh;
   background: #0d0d0d;
+  transition: background-color 0.3s ease;
+}
+
+/* Light Mode */
+.lucide-clone.light {
+  background: #ffffff;
+  color: #1a1a1a;
+}
+
+.lucide-clone.light body {
+  background: #ffffff;
+  color: #1a1a1a;
 }
 
 /* Header */
@@ -28,6 +41,12 @@ body {
   background: rgba(13, 13, 13, 0.8);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid #222;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.lucide-clone.light .header {
+  background: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .header-content {
@@ -47,6 +66,11 @@ body {
   font-size: 1.125rem;
   font-weight: 600;
   color: #fff;
+  transition: color 0.3s ease;
+}
+
+.lucide-clone.light .logo {
+  color: #1a1a1a;
 }
 
 .logo svg {
@@ -816,4 +840,249 @@ body {
     flex-direction: column;
     gap: 0.5rem;
   }
+}
+
+/* Light Mode Overrides */
+.lucide-clone.light .nav a {
+  color: #666;
+}
+
+.lucide-clone.light .nav a:hover {
+  color: #1a1a1a;
+}
+
+.lucide-clone.light .theme-toggle,
+.lucide-clone.light .github-link,
+.lucide-clone.light .discord-link {
+  color: #666;
+}
+
+.lucide-clone.light .theme-toggle:hover,
+.lucide-clone.light .github-link:hover,
+.lucide-clone.light .discord-link:hover {
+  background: #f5f5f5;
+  color: #1a1a1a;
+}
+
+.lucide-clone.light .version-badge {
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  color: #666;
+}
+
+.lucide-clone.light .hero-title {
+  color: #1a1a1a;
+}
+
+.lucide-clone.light .hero-subtitle {
+  color: #666;
+}
+
+.lucide-clone.light .btn-secondary {
+  background: #f5f5f5;
+  color: #1a1a1a;
+  border: 1px solid #e0e0e0;
+}
+
+.lucide-clone.light .btn-secondary:hover {
+  background: #e0e0e0;
+  border-color: #d0d0d0;
+}
+
+.lucide-clone.light .hero-icons {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+}
+
+.lucide-clone.light .hero-icon {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  color: #666;
+}
+
+.lucide-clone.light .hero-icon:hover {
+  background: #f5f5f5;
+  border-color: #d0d0d0;
+  color: #1a1a1a;
+}
+
+.lucide-clone.light .search-bar {
+  background: #fff;
+  border: 1px solid #d0d0d0;
+}
+
+.lucide-clone.light .search-bar input {
+  color: #1a1a1a;
+}
+
+.lucide-clone.light .search-bar input::placeholder {
+  color: #999;
+}
+
+.lucide-clone.light .search-icon {
+  color: #999;
+}
+
+.lucide-clone.light .feature-card {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+}
+
+.lucide-clone.light .feature-card:hover {
+  background: #fff;
+  border-color: #d0d0d0;
+}
+
+.lucide-clone.light .feature-card h3 {
+  color: #1a1a1a;
+}
+
+.lucide-clone.light .feature-card p {
+  color: #666;
+}
+
+.lucide-clone.light .frameworks-section {
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.lucide-clone.light .frameworks-label {
+  color: #999;
+}
+
+.lucide-clone.light .framework-logo {
+  background: #f5f5f5;
+}
+
+.lucide-clone.light .framework-logo:hover {
+  background: #e0e0e0;
+}
+
+.lucide-clone.light .btn-more {
+  background: transparent;
+  color: #666;
+  border: 1px solid #d0d0d0;
+}
+
+.lucide-clone.light .btn-more:hover {
+  background: #f5f5f5;
+  color: #1a1a1a;
+  border-color: #c0c0c0;
+}
+
+.lucide-clone.light .panel-header h2 {
+  color: #1a1a1a;
+}
+
+.lucide-clone.light .panel-header svg {
+  color: #999;
+}
+
+.lucide-clone.light .panel-description {
+  color: #666;
+}
+
+.lucide-clone.light .control-group label {
+  color: #666;
+}
+
+.lucide-clone.light .value {
+  color: #1a1a1a;
+}
+
+.lucide-clone.light .color-input {
+  background: #f5f5f5;
+  border: 1px solid #d0d0d0;
+}
+
+.lucide-clone.light .control-group input[type="range"] {
+  background: #f5f5f5;
+}
+
+.lucide-clone.light .slider {
+  background-color: #d0d0d0;
+}
+
+.lucide-clone.light .preview-grid {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+}
+
+.lucide-clone.light .preview-icon {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  color: #666;
+}
+
+.lucide-clone.light .preview-icon:hover {
+  background: #f5f5f5;
+  border-color: #d0d0d0;
+  color: #1a1a1a;
+}
+
+.lucide-clone.light .team-section h2 {
+  color: #1a1a1a;
+}
+
+.lucide-clone.light .team-card {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+}
+
+.lucide-clone.light .team-card:hover {
+  background: #fff;
+  border-color: #d0d0d0;
+}
+
+.lucide-clone.light .team-card h3 {
+  color: #1a1a1a;
+}
+
+.lucide-clone.light .team-card p {
+  color: #666;
+}
+
+.lucide-clone.light .team-badge {
+  background: #f5f5f5;
+  border: 1px solid #d0d0d0;
+  color: #666;
+}
+
+.lucide-clone.light .team-links a {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.lucide-clone.light .team-links a:hover {
+  background: #e0e0e0;
+  color: #1a1a1a;
+}
+
+.lucide-clone.light .sponsor-cta {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+}
+
+.lucide-clone.light .sponsor-cta p {
+  color: #666;
+}
+
+.lucide-clone.light .footer {
+  border-top: 1px solid #e0e0e0;
+}
+
+.lucide-clone.light .footer-left p {
+  color: #999;
+}
+
+.lucide-clone.light .footer-links a {
+  color: #666;
+}
+
+.lucide-clone.light .footer-links a:hover {
+  color: #1a1a1a;
+}
+
+.lucide-clone.light .footer-sponsor {
+  color: #999;
 }

@@ -10,6 +10,12 @@ export {
   Customer,
   Coupon,
   FilterItem,
+  Dislike,
+  FastDelivery,
+  Location,
+  Nevigation,
+  RemoveItem,
+  User,
 } from "./icons";
 
 // Export animation data for advanced users
@@ -19,4 +25,10 @@ export {
   customerAnimation,
   couponAnimation,
   filterItemAnimation,
+  dislikeAnimation,
+  fastDeliveryAnimation,
+  locationAnimation,
+  nevigationAnimation,
+  removeItemAnimation,
+  userAnimation,
 } from "./icons";

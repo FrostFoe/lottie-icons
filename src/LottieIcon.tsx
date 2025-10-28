@@ -13,16 +13,28 @@ function hexToLottieColor(hex: string): [number, number, number] {
   ];
 }
 
+// Helper to parse color (accepts hex string or RGB array)
+function parseColor(color: string | number[]): [number, number, number, number] {
+  if (Array.isArray(color)) {
+    // Already in RGB format [r, g, b, a]
+    return color.length === 4 ? (color as [number, number, number, number]) : [...color, 1] as [number, number, number, number];
+  }
+  // Hex format
+  const rgb = hexToLottieColor(color);
+  return [...rgb, 1];
+}
+
 // Helper to compare two Lottie colors with a tolerance
 function areColorsEqual(
   color1: number[],
-  color2: [number, number, number],
+  color2: [number, number, number, number],
 ): boolean {
   const tolerance = 0.01;
   return (
     Math.abs(color1[0] - color2[0]) < tolerance &&
     Math.abs(color1[1] - color2[1]) < tolerance &&
-    Math.abs(color1[2] - color2[2]) < tolerance
+    Math.abs(color1[2] - color2[2]) < tolerance &&
+    (color1.length < 4 || Math.abs((color1[3] || 1) - color2[3]) < tolerance)
   );
 }
 
@@ -71,8 +83,8 @@ export const LottieIcon = forwardRef<HTMLDivElement, LottieIconProps>(
       const newAnimationData = JSON.parse(JSON.stringify(animationData));
 
       const colorMap = Object.entries(colors).map(([key, value]) => ({
-        from: hexToLottieColor(key),
-        to: hexToLottieColor(value),
+        from: parseColor(key),
+        to: parseColor(value),
       }));
 
       // Traverse the layers and shapes to replace colors
@@ -82,7 +94,7 @@ export const LottieIcon = forwardRef<HTMLDivElement, LottieIconProps>(
             if (item.c?.k) {
               for (const { from, to } of colorMap) {
                 if (areColorsEqual(item.c.k, from)) {
-                  item.c.k = [...to, item.c.k[3]]; // Keep original alpha
+                  item.c.k = [...to.slice(0, 3), item.c.k[3] || 1]; // Keep original alpha if available
                 }
               }
             }

@@ -6,6 +6,12 @@ import {
   Coupon,
   Customer,
   FilterItem,
+  Dislike,
+  FastDelivery,
+  Location,
+  Nevigation,
+  RemoveItem,
+  User,
 } from "../../src/icons";
 import "./styles.css";
 
@@ -18,22 +24,24 @@ function Demo() {
 
   const toggleTheme = () => {
     setIsDark(!isDark);
-    document.documentElement.classList.toggle("dark", !isDark);
   };
 
+  // Lottie uses RGB color arrays [r, g, b, a] where values are 0-1
   const themeColors = {
     light: {
-      "#000000": "#4A4A4A", // Black to dark gray
+      // Map black [0,0,0,1] to dark gray
+      "0,0,0,1": [0.29, 0.29, 0.29, 1], // #4A4A4A
     },
     dark: {
-      "#000000": "#FFFFFF", // Black to white
+      // Map black [0,0,0,1] to white
+      "0,0,0,1": [1, 1, 1, 1], // #FFFFFF
     },
   };
 
   const colors = isDark ? themeColors.dark : themeColors.light;
 
   return (
-    <div className={`lucide-clone ${isDark ? "dark" : ""}`}>
+    <div className={`lucide-clone ${isDark ? "dark" : "light"}`}>
       {/* Header */}
       <header className="header">
         <div className="header-content">
@@ -145,9 +153,9 @@ function Demo() {
               Customer,
               Coupon,
               FilterItem,
-              Add,
-              Announcement,
-              Customer,
+              Dislike,
+              FastDelivery,
+              Location,
             ].map((Icon, i) => (
               <div key={i} className="hero-icon">
                 <Icon size={20} autoplay loop colors={colors} />
@@ -156,14 +164,14 @@ function Demo() {
           </div>
           <div className="icon-row">
             {[
-              Coupon,
-              FilterItem,
+              Nevigation,
+              RemoveItem,
+              User,
               Add,
               Announcement,
               Customer,
               Coupon,
               FilterItem,
-              Add,
             ].map((Icon, i) => (
               <div key={i} className="hero-icon">
                 <Icon size={20} autoplay loop colors={colors} />
@@ -172,12 +180,12 @@ function Demo() {
           </div>
           <div className="icon-row">
             {[
-              FilterItem,
-              Add,
-              Announcement,
-              Customer,
-              Coupon,
-              FilterItem,
+              Dislike,
+              FastDelivery,
+              Location,
+              Nevigation,
+              RemoveItem,
+              User,
               Add,
               Announcement,
             ].map((Icon, i) => (
@@ -188,14 +196,14 @@ function Demo() {
           </div>
           <div className="icon-row">
             {[
-              Add,
-              Announcement,
               Customer,
               Coupon,
               FilterItem,
-              Add,
-              Announcement,
-              Customer,
+              Dislike,
+              FastDelivery,
+              Location,
+              Nevigation,
+              RemoveItem,
             ].map((Icon, i) => (
               <div key={i} className="hero-icon">
                 <Icon size={20} autoplay loop colors={colors} />
@@ -220,7 +228,7 @@ function Demo() {
               </svg>
               <input
                 type="text"
-                placeholder="Search 6 icons..."
+                placeholder="Search 11 icons..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -409,7 +417,8 @@ function Demo() {
           </div>
           <p className="panel-description">
             Install and start using animated icons in seconds. Choose between
-            default or per-icon imports for optimal bundle size.
+            default or per-icon imports for optimal bundle size. All 11 icons
+            support dynamic theming!
           </p>
 
           <div className="controls">
@@ -468,6 +477,12 @@ function Demo() {
               Coupon,
               Customer,
               FilterItem,
+              Dislike,
+              FastDelivery,
+              Location,
+              Nevigation,
+              RemoveItem,
+              User,
             ];
             const Icon = icons[i % icons.length];
             return (
@@ -567,6 +582,12 @@ function Demo() {
               Coupon,
               Customer,
               FilterItem,
+              Dislike,
+              FastDelivery,
+              Location,
+              Nevigation,
+              RemoveItem,
+              User,
             ];
             const Icon = icons[i % icons.length];
             return (

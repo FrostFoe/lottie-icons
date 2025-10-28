@@ -15,8 +15,9 @@ export interface LottieIconProps extends HTMLAttributes<HTMLDivElement> {
   autoplay?: boolean;
   /** Color override (if the Lottie file supports it) */
   color?: string;
-  /** A map of original hex colors to new hex colors for theming */
-  colors?: Record<string, string>;
+  /** A map of color keys to replacement colors for theming. 
+   * Keys and values can be either hex strings ('#000000') or RGB array strings ('0,0,0,1') */
+  colors?: Record<string, string | number[]>;
   /** Stroke width override (if applicable) */
   strokeWidth?: number;
   /** Additional CSS class names */
