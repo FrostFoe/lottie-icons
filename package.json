@@ -1,6 +1,6 @@
 {
   "name": "lottie-icons",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Beautiful animated React icons powered by Lottie - Lucide-style API with SSR support",
   "main": "./dist/lottie-icons.es.js",
   "module": "./dist/lottie-icons.es.js",
