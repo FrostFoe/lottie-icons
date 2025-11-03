@@ -210,7 +210,7 @@ const MyIcon = createLottieIcon("MyIcon", animationData);
 
 ### Built-in Icons
 
-The library includes these animated icons:
+The library includes these 15 animated icons:
 
 - `Add` - Add/Plus icon with animation
 - `Announcement` - Announcement/megaphone icon
@@ -223,6 +223,10 @@ The library includes these animated icons:
 - `Nevigation` - Navigation/compass icon
 - `RemoveItem` - Remove/delete icon
 - `User` - User/person icon
+- `QrCode` - QR code scanner icon
+- `PhoneCall` - Phone call icon
+- `SearchProduct` - Search/magnifying glass icon
+- `Security` - Security/lock icon
 
 ## 🎨 Creating Your Own Icons
 

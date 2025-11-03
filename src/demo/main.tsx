@@ -12,6 +12,10 @@ import {
   Nevigation,
   RemoveItem,
   User,
+  QrCode,
+  PhoneCall,
+  SearchProduct,
+  Security,
 } from "../../src/icons";
 import "./styles.css";
 
@@ -167,11 +171,11 @@ function Demo() {
               Nevigation,
               RemoveItem,
               User,
+              QrCode,
+              PhoneCall,
+              SearchProduct,
+              Security,
               Add,
-              Announcement,
-              Customer,
-              Coupon,
-              FilterItem,
             ].map((Icon, i) => (
               <div key={i} className="hero-icon">
                 <Icon size={20} autoplay loop colors={colors} />
@@ -180,30 +184,30 @@ function Demo() {
           </div>
           <div className="icon-row">
             {[
+              Announcement,
+              Customer,
+              Coupon,
+              FilterItem,
               Dislike,
               FastDelivery,
               Location,
               Nevigation,
+            ].map((Icon, i) => (
+              <div key={i} className="hero-icon">
+                <Icon size={20} autoplay loop colors={colors} />
+              </div>
+            ))}
+          </div>
+          <div className="icon-row">
+            {[
               RemoveItem,
               User,
+              QrCode,
+              PhoneCall,
+              SearchProduct,
+              Security,
               Add,
               Announcement,
-            ].map((Icon, i) => (
-              <div key={i} className="hero-icon">
-                <Icon size={20} autoplay loop colors={colors} />
-              </div>
-            ))}
-          </div>
-          <div className="icon-row">
-            {[
-              Customer,
-              Coupon,
-              FilterItem,
-              Dislike,
-              FastDelivery,
-              Location,
-              Nevigation,
-              RemoveItem,
             ].map((Icon, i) => (
               <div key={i} className="hero-icon">
                 <Icon size={20} autoplay loop colors={colors} />
@@ -228,7 +232,7 @@ function Demo() {
               </svg>
               <input
                 type="text"
-                placeholder="Search 11 icons..."
+                placeholder="Search 15 icons..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -483,6 +487,10 @@ function Demo() {
               Nevigation,
               RemoveItem,
               User,
+              QrCode,
+              PhoneCall,
+              SearchProduct,
+              Security,
             ];
             const Icon = icons[i % icons.length];
             return (
@@ -588,6 +596,10 @@ function Demo() {
               Nevigation,
               RemoveItem,
               User,
+              QrCode,
+              PhoneCall,
+              SearchProduct,
+              Security,
             ];
             const Icon = icons[i % icons.length];
             return (

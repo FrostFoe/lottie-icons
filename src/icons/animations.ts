@@ -9,6 +9,10 @@ import locationAnimation from "./location.json";
 import nevigationAnimation from "./nevigation.json";
 import removeItemAnimation from "./remove-item.json";
 import userAnimation from "./user.json";
+import qrCodeAnimation from "./qr-code.json";
+import phoneCallAnimation from "./phone-call.json";
+import searchProductAnimation from "./search-product.json";
+import securityAnimation from "./security.json";
 
 export {
   addAnimation,
@@ -22,4 +26,8 @@ export {
   nevigationAnimation,
   removeItemAnimation,
   userAnimation,
+  qrCodeAnimation,
+  phoneCallAnimation,
+  searchProductAnimation,
+  securityAnimation,
 };

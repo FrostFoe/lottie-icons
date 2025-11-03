@@ -11,6 +11,10 @@ import {
   nevigationAnimation,
   removeItemAnimation,
   userAnimation,
+  qrCodeAnimation,
+  phoneCallAnimation,
+  searchProductAnimation,
+  securityAnimation,
 } from "./animations";
 
 export const Add = createLottieIcon(addAnimation, "Add");
@@ -30,6 +34,13 @@ export const Location = createLottieIcon(locationAnimation, "Location");
 export const Nevigation = createLottieIcon(nevigationAnimation, "Nevigation");
 export const RemoveItem = createLottieIcon(removeItemAnimation, "RemoveItem");
 export const User = createLottieIcon(userAnimation, "User");
+export const QrCode = createLottieIcon(qrCodeAnimation, "QrCode");
+export const PhoneCall = createLottieIcon(phoneCallAnimation, "PhoneCall");
+export const SearchProduct = createLottieIcon(
+  searchProductAnimation,
+  "SearchProduct",
+);
+export const Security = createLottieIcon(securityAnimation, "Security");
 
 export {
   addAnimation,
@@ -43,4 +54,8 @@ export {
   nevigationAnimation,
   removeItemAnimation,
   userAnimation,
+  qrCodeAnimation,
+  phoneCallAnimation,
+  searchProductAnimation,
+  securityAnimation,
 };

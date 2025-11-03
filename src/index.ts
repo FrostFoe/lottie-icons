@@ -16,6 +16,10 @@ export {
   Nevigation,
   RemoveItem,
   User,
+  QrCode,
+  PhoneCall,
+  SearchProduct,
+  Security,
 } from "./icons";
 
 // Export animation data for advanced users
@@ -31,4 +35,8 @@ export {
   nevigationAnimation,
   removeItemAnimation,
   userAnimation,
+  qrCodeAnimation,
+  phoneCallAnimation,
+  searchProductAnimation,
+  securityAnimation,
 } from "./icons";
