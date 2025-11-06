@@ -14,10 +14,14 @@ function hexToLottieColor(hex: string): [number, number, number] {
 }
 
 // Helper to parse color (accepts hex string or RGB array)
-function parseColor(color: string | number[]): [number, number, number, number] {
+function parseColor(
+  color: string | number[],
+): [number, number, number, number] {
   if (Array.isArray(color)) {
     // Already in RGB format [r, g, b, a]
-    return color.length === 4 ? (color as [number, number, number, number]) : [...color, 1] as [number, number, number, number];
+    return color.length === 4
+      ? (color as [number, number, number, number])
+      : ([...color, 1] as [number, number, number, number]);
   }
   // Hex format
   const rgb = hexToLottieColor(color);

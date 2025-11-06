@@ -176,19 +176,19 @@ const hexThemeColors = {
 
 All icon components accept the following props:
 
-| Prop          | Type                          | Default | Description                             |
-| ------------- | ----------------------------- | ------- | --------------------------------------- |
-| `size`        | `number \| string`            | `24`    | Size of the icon in pixels              |
-| `speed`       | `number`                      | `1`     | Animation speed multiplier (1 = normal) |
-| `loop`        | `boolean`                     | `false` | Whether to loop the animation           |
-| `autoplay`    | `boolean`                     | `true`  | Whether to autoplay on mount            |
-| `hoverToPlay` | `boolean`                     | `false` | Play animation on hover                 |
-| `colors`      | `Record<string, string \| number[]>` | -    | Color mappings for theming (supports hex or RGB) |
-| `renderer`    | `'svg' \| 'canvas' \| 'html'` | `'svg'` | Lottie renderer type                    |
-| `className`   | `string`                      | `''`    | Additional CSS classes                  |
-| `onComplete`  | `() => void`                  | -       | Callback when animation completes       |
-| `onLoad`      | `() => void`                  | -       | Callback when animation loads           |
-| `style`       | `React.CSSProperties`         | -       | Inline styles                           |
+| Prop          | Type                                 | Default | Description                                      |
+| ------------- | ------------------------------------ | ------- | ------------------------------------------------ |
+| `size`        | `number \| string`                   | `24`    | Size of the icon in pixels                       |
+| `speed`       | `number`                             | `1`     | Animation speed multiplier (1 = normal)          |
+| `loop`        | `boolean`                            | `false` | Whether to loop the animation                    |
+| `autoplay`    | `boolean`                            | `true`  | Whether to autoplay on mount                     |
+| `hoverToPlay` | `boolean`                            | `false` | Play animation on hover                          |
+| `colors`      | `Record<string, string \| number[]>` | -       | Color mappings for theming (supports hex or RGB) |
+| `renderer`    | `'svg' \| 'canvas' \| 'html'`        | `'svg'` | Lottie renderer type                             |
+| `className`   | `string`                             | `''`    | Additional CSS classes                           |
+| `onComplete`  | `() => void`                         | -       | Callback when animation completes                |
+| `onLoad`      | `() => void`                         | -       | Callback when animation loads                    |
+| `style`       | `React.CSSProperties`                | -       | Inline styles                                    |
 
 ### Components
 
