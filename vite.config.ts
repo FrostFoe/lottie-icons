@@ -15,49 +15,61 @@ const iconFiles = readdirSync(iconsDir)
   .filter((file) => file.endsWith(".tsx"))
   .map((file) => file.replace(".tsx", ""));
 
-export default defineConfig({
-  plugins: [
-    react(),
-    dts({
-      insertTypesEntry: true,
-    }),
-  ],
-  build: {
-    lib: {
-      entry: {
-        index: resolve(__dirname, "src/index.ts"),
-        // Add per-icon entries for tree-shaking
-        ...iconFiles.reduce(
-          (entries, name) => {
-            entries[`icons/${name}`] = resolve(
-              __dirname,
-              `src/icons/${name}.tsx`,
-            );
-            return entries;
+export default defineConfig(({ mode }) => {
+  if (mode === "lib") {
+    return {
+      plugins: [
+        react(),
+        dts({
+          insertTypesEntry: true,
+        }),
+      ],
+      build: {
+        lib: {
+          entry: {
+            index: resolve(__dirname, "src/index.ts"),
+            // Add per-icon entries for tree-shaking
+            ...iconFiles.reduce(
+              (entries, name) => {
+                entries[`icons/${name}`] = resolve(
+                  __dirname,
+                  `src/icons/${name}.tsx`,
+                );
+                return entries;
+              },
+              {} as Record<string, string>,
+            ),
           },
-          {} as Record<string, string>,
-        ),
-      },
-      name: "LottieIcons",
-      formats: ["es"],
-      fileName: (format, entryName) => {
-        if (entryName === "index") {
-          return `lottie-icons.${format}.js`;
-        }
-        return `${entryName}.js`;
-      },
-    },
-    rollupOptions: {
-      external: ["react", "react-dom", "react/jsx-runtime"],
-      output: {
-        globals: {
-          react: "React",
-          "react-dom": "ReactDOM",
+          name: "LottieIcons",
+          formats: ["es"],
+          fileName: (format, entryName) => {
+            if (entryName === "index") {
+              return `lottie-icons.${format}.js`;
+            }
+            return `${entryName}.js`;
+          },
         },
-        // Preserve module structure for tree-shaking
-        preserveModules: false,
-        exports: "named",
+        rollupOptions: {
+          external: ["react", "react-dom", "react/jsx-runtime"],
+          output: {
+            globals: {
+              react: "React",
+              "react-dom": "ReactDOM",
+            },
+            // Preserve module structure for tree-shaking
+            preserveModules: false,
+            exports: "named",
+          },
+        },
       },
+    };
+  }
+
+  return {
+    plugins: [react()],
+    root: "./",
+    build: {
+      outDir: "dist/demo",
     },
-  },
+  };
 });

@@ -36,9 +36,10 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build:lib": "tsc && vite build --mode lib",
+    "build:demo": "vite build",
     "preview": "vite preview",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "pnpm build:lib"
   },
   "keywords": [
     "react",
