@@ -17,6 +17,10 @@ import {
   SearchProduct,
   Security,
 } from "../../src/icons";
+import { CodeEditor } from "./CodeEditor";
+import { SearchFilter } from "./SearchFilter";
+import { ToastProvider } from "./toast";
+import { ICON_METADATA } from "./utils";
 import "./styles.css";
 
 function Demo() {
@@ -25,6 +29,16 @@ function Demo() {
   const [size, setSize] = useState(24);
   const [absoluteStrokeWidth, setAbsoluteStrokeWidth] = useState(false);
   const [isDark, setIsDark] = useState(true);
+  const [selectedIcon, setSelectedIcon] = useState("Add");
+  const [perIconImport, setPerIconImport] = useState(false);
+  const [favorites, setFavorites] = useState<Set<string>>(() => {
+    try {
+      const saved = localStorage.getItem("lottie-icons-favorites");
+      return new Set(saved ? JSON.parse(saved) : []);
+    } catch {
+      return new Set();
+    }
+  });
 
   const toggleTheme = () => {
     setIsDark(!isDark);
@@ -241,6 +255,62 @@ function Demo() {
         </div>
       </section>
 
+      {/* Interactive Playground Section */}
+      <section className="playground-section">
+        <div className="playground-container">
+          <h2 className="playground-title">Interactive Playground</h2>
+          <p className="playground-subtitle">Search, filter, and copy code snippets for any icon</p>
+          
+          <div className="playground-content">
+            <SearchFilter
+              onIconsChange={() => {}}
+              onIconSelect={setSelectedIcon}
+              favorites={favorites}
+              onFavoritesChange={setFavorites}
+            />
+            
+            <div className="playground-right">
+              <CodeEditor
+                selectedIcon={selectedIcon}
+                perIconImport={perIconImport}
+                onToggleImportType={() => setPerIconImport(!perIconImport)}
+              />
+              
+              <div className="icon-preview-panel">
+                <h3>Live Preview</h3>
+                <div className="live-preview">
+                  {selectedIcon === "Add" && <Add size={96} loop autoplay colors={colors} />}
+                  {selectedIcon === "Announcement" && <Announcement size={96} loop autoplay colors={colors} />}
+                  {selectedIcon === "Customer" && <Customer size={96} loop autoplay colors={colors} />}
+                  {selectedIcon === "Coupon" && <Coupon size={96} loop autoplay colors={colors} />}
+                  {selectedIcon === "FilterItem" && <FilterItem size={96} loop autoplay colors={colors} />}
+                  {selectedIcon === "Dislike" && <Dislike size={96} loop autoplay colors={colors} />}
+                  {selectedIcon === "FastDelivery" && <FastDelivery size={96} loop autoplay colors={colors} />}
+                  {selectedIcon === "Location" && <Location size={96} loop autoplay colors={colors} />}
+                  {selectedIcon === "Nevigation" && <Nevigation size={96} loop autoplay colors={colors} />}
+                  {selectedIcon === "RemoveItem" && <RemoveItem size={96} loop autoplay colors={colors} />}
+                  {selectedIcon === "User" && <User size={96} loop autoplay colors={colors} />}
+                  {selectedIcon === "QrCode" && <QrCode size={96} loop autoplay colors={colors} />}
+                  {selectedIcon === "PhoneCall" && <PhoneCall size={96} loop autoplay colors={colors} />}
+                  {selectedIcon === "SearchProduct" && <SearchProduct size={96} loop autoplay colors={colors} />}
+                  {selectedIcon === "Security" && <Security size={96} loop autoplay colors={colors} />}
+                </div>
+                {ICON_METADATA[selectedIcon] && (
+                  <div className="preview-metadata">
+                    <p className="description">{ICON_METADATA[selectedIcon].description}</p>
+                    <div className="metadata-tags">
+                      {ICON_METADATA[selectedIcon].tags.map((tag) => (
+                        <span key={tag} className="tag">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Feature Cards */}
       <section className="features-section">
         <div className="feature-grid">
@@ -401,11 +471,11 @@ function Demo() {
         </button>
       </section>
 
-      {/* Customization Panel */}
+      {/* Customization & Quick Start Section */}
       <section className="customization-section">
         <div className="customization-panel">
           <div className="panel-header">
-            <h2>Quick Start</h2>
+            <h2>Quick Start & Customization</h2>
             <svg
               width="20"
               height="20"
@@ -420,9 +490,7 @@ function Demo() {
             </svg>
           </div>
           <p className="panel-description">
-            Install and start using animated icons in seconds. Choose between
-            default or per-icon imports for optimal bundle size. All 11 icons
-            support dynamic theming!
+            Install in seconds and customize with full control. Choose between default or per-icon imports for optimal bundle size. Lottie Icons offers SSR-safe lazy loading and extensive animation customization.
           </p>
 
           <div className="controls">
@@ -469,114 +537,51 @@ function Demo() {
                 </span>
               </label>
             </div>
-          </div>
-        </div>
 
-        {/* Icon Preview Grid */}
-        <div className="preview-grid">
-          {Array.from({ length: 48 }, (_, i) => {
-            const icons = [
-              Add,
-              Announcement,
-              Coupon,
-              Customer,
-              FilterItem,
-              Dislike,
-              FastDelivery,
-              Location,
-              Nevigation,
-              RemoveItem,
-              User,
-              QrCode,
-              PhoneCall,
-              SearchProduct,
-              Security,
-            ];
-            const Icon = icons[i % icons.length];
-            return (
-              <div key={i} className="preview-icon">
-                <Icon size={size} autoplay loop colors={colors} />
+            <div style={{ borderTop: "1px solid #2a2a2a", paddingTop: "1rem", marginTop: "1rem" }}>
+              <div className="control-group">
+                <label>
+                  <span>Animation Speed</span>
+                  <span className="value">{strokeWidth}x</span>
+                </label>
+                <input
+                  type="range"
+                  min="1"
+                  max="4"
+                  step="0.5"
+                  value={strokeWidth}
+                  onChange={(e) => setStrokeWidth(Number(e.target.value))}
+                />
               </div>
-            );
-          })}
-        </div>
-      </section>
 
-      {/* Customization Panel */}
-      <section className="customization-section">
-        <div className="customization-panel">
-          <div className="panel-header">
-            <h2>Style as you please</h2>
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <circle cx="12" cy="12" r="3" />
-              <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24" />
-            </svg>
-          </div>
-          <p className="panel-description">
-            Lottie Icons offers extensive customization with SSR-safe lazy
-            loading, per-icon imports, and full animation control.
-          </p>
+              <div className="control-group">
+                <label>
+                  <span>Size</span>
+                  <span className="value">{size}px</span>
+                </label>
+                <input
+                  type="range"
+                  min="16"
+                  max="48"
+                  step="4"
+                  value={size}
+                  onChange={(e) => setSize(Number(e.target.value))}
+                />
+              </div>
 
-          <div className="controls">
-            <div className="control-group">
-              <label>
-                <span>Color</span>
-                <div className="color-input">
-                  <div className="color-swatch"></div>
-                  <span>currentColor</span>
-                </div>
-              </label>
-            </div>
-
-            <div className="control-group">
-              <label>
-                <span>Animation Speed</span>
-                <span className="value">{strokeWidth}x</span>
-              </label>
-              <input
-                type="range"
-                min="1"
-                max="4"
-                step="0.5"
-                value={strokeWidth}
-                onChange={(e) => setStrokeWidth(Number(e.target.value))}
-              />
-            </div>
-
-            <div className="control-group">
-              <label>
-                <span>Size</span>
-                <span className="value">{size}px</span>
-              </label>
-              <input
-                type="range"
-                min="16"
-                max="48"
-                step="4"
-                value={size}
-                onChange={(e) => setSize(Number(e.target.value))}
-              />
-            </div>
-
-            <div className="control-group checkbox">
-              <label>
-                <span>Loop Animation</span>
-                <div className="toggle-switch">
-                  <input
-                    type="checkbox"
-                    checked={absoluteStrokeWidth}
-                    onChange={(e) => setAbsoluteStrokeWidth(e.target.checked)}
-                  />
-                  <span className="slider"></span>
-                </div>
-              </label>
+              <div className="control-group checkbox">
+                <label>
+                  <span>Loop Animation</span>
+                  <div className="toggle-switch">
+                    <input
+                      type="checkbox"
+                      checked={absoluteStrokeWidth}
+                      onChange={(e) => setAbsoluteStrokeWidth(e.target.checked)}
+                    />
+                    <span className="slider"></span>
+                  </div>
+                </label>
+              </div>
             </div>
           </div>
         </div>
@@ -766,4 +771,8 @@ function Demo() {
 }
 
 const root = createRoot(document.getElementById("root")!);
-root.render(<Demo />);
+root.render(
+  <ToastProvider>
+    <Demo />
+  </ToastProvider>
+);
